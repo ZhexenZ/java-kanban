@@ -1,3 +1,6 @@
+package manager;
+import model.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +17,7 @@ public class TaskManager {
         taskMap.put(task.getId(), task);
     }
 
-    public Map<Integer,Task> printAllTask() {
+    public Map<Integer, Task> printAllTask() {
         return taskMap;
     }
 
@@ -31,7 +34,7 @@ public class TaskManager {
         taskMap.clear();
     }
 
-    public void updateStatusTask(int id,TaskStatus status) {
+    public void updateStatusTask(int id, TaskStatus status) {
         taskMap.get(id).setStatus(status);
     }
 
@@ -83,7 +86,7 @@ public class TaskManager {
         }
     }
 
-    public Map<Integer,Subtask> printAllSubtask() {
+    public Map<Integer, Subtask> printAllSubtask() {
         return subtaskMap;
     }
 
