@@ -76,6 +76,10 @@ public class TaskManager {
             subtaskMap.put(subtask.getId(), subtask);
             epicMap.get(epicId).addSubtaskIdsList(subtask.getId());
             updateEpicStatus(epicId);
+
+            String message = String.format("Эпик ID: %d\nДобавлена подзадача ID: %d - %s",
+                    epicId, subtask.getId(), subtask.getName());
+            System.out.println(message);
         }
     }
 
