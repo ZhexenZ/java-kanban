@@ -2,62 +2,68 @@ package main;
 
 import manager.TaskManager;
 import model.*;
+import util.ManagerUtil;
 
 
 public class Main {
     public static void main(String[] args) {
-        TaskManager taskManager = new TaskManager();
+        TaskManager manager = ManagerUtil.getDefault();
 
-        System.out.println("🟢 Тест 1: Создание задачи");
-        Task task = new Task("Test Task", "Description");
-        taskManager.createTask(task);
-        assert taskManager.printAllTask().size() == 1 : "Ошибка: задача не была добавлена";
-        System.out.println("✅ Тест пройден!\n");
+        Epic epic1 = new Epic("Test", "test");
+        manager.createEpic(epic1);
 
-        System.out.println("🟢 Тест 2: Удаление задачи");
-        taskManager.removeTaskById(1);
-        assert taskManager.printAllTask().size() == 0 : "Ошибка: задача не была удалена";
-        System.out.println("✅ Тест пройден!\n");
+        Subtask subtask1 = new Subtask("sfsd","sdfsfd",epic1.getId());
+        Subtask subtask2 = new Subtask("2","2",epic1.getId());
 
-        System.out.println("🟢 Тест 3: Обновление статуса задачи");
-        taskManager.createTask(new Task("New Task", "Desc"));
-        taskManager.updateStatusTask(2, TaskStatus.DONE);
-        assert taskManager.printAllTask().get(2).getStatus() == TaskStatus.DONE : "Ошибка: статус задачи не обновился";
-        System.out.println("✅ Тест пройден!\n");
+        manager.createSubtask(epic1.getId(), subtask1);
+        manager.createSubtask(epic1.getId(), subtask2);
 
-        System.out.println("🟢 Тест 4: Создание эпика");
-        Epic epic = new Epic("Test Epic", "Description");
-        taskManager.createEpic(epic);
-        assert taskManager.printAllEpic().size() == 1 : "Ошибка: эпик не был добавлен";
-        System.out.println("✅ Тест пройден!\n");
+//        epic1.addSubtaskIdsList(epic1.getId());
 
-        System.out.println("🟢 Тест 5: Удаление эпика");
-        taskManager.removeEpicById(3);
-        assert taskManager.printAllEpic().size() == 0 : "Ошибка: эпик не был удалён";
-        System.out.println("✅ Тест пройден!\n");
 
-        System.out.println("🟢 Тест 6: Добавление подзадачи к эпику");
-        Epic epic2 = new Epic("Epic 2", "Description");
-        taskManager.createEpic(epic2);
-        Subtask subtask = new Subtask("Subtask 1", "Description", 4);
-        taskManager.createSubtask(4, subtask);
-        assert taskManager.printAllSubtask().size() == 1 : "Ошибка: подзадача не добавилась";
-        assert taskManager.printAllEpic().get(4).getStatus() == TaskStatus.NEW : "Ошибка: статус эпика не обновился";
-        System.out.println("✅ Тест пройден!\n");
+//        Task task1 = new Task("Задача1", "Description1");
+//        Task task2 = new Task("Задача2", "Description2");
+//        Task task3 = new Task("Задача3", "Description3");
+//        Task task4 = new Task("Задача4", "Description4");
+//        Task task5 = new Task("Задача5", "Description5");
+//        Task task6 = new Task("Задача6", "Description6");
+//        Task task7 = new Task("Задача7", "Description7");
+//        Task task8 = new Task("Задача8", "Description8");
+//        Task task9 = new Task("Задача9", "Description9");
+//        Task task10 = new Task("Задача10", "Description10");
 
-        System.out.println("🟢 Тест 7: Обновление статуса подзадачи и проверка статуса эпика");
-        taskManager.updateSubtaskStatus(5, TaskStatus.IN_PROGRESS);
-        assert taskManager.printAllEpic().get(4).getStatus() == TaskStatus.IN_PROGRESS : "Ошибка: статус эпика должен быть IN_PROGRESS";
-        taskManager.updateSubtaskStatus(5, TaskStatus.DONE);
-        assert taskManager.printAllEpic().get(4).getStatus() == TaskStatus.DONE : "Ошибка: статус эпика должен быть DONE";
-        System.out.println("✅ Тест пройден!\n");
 
-        System.out.println("🟢 Тест 8: Удаление всех подзадач");
-        taskManager.removeAllSubtasks();
-        assert taskManager.printAllSubtask().size() == 0 : "Ошибка: подзадачи не удалены";
-        assert taskManager.printAllEpic().get(4).getStatus() == TaskStatus.NEW : "Ошибка: статус эпика должен быть NEW";
-        System.out.println("✅ Тест пройден!\n");
+//        manager.createTask(task1);
+//        manager.createTask(task2);
+//        manager.createTask(task3);
+//        manager.createTask(task4);
+//        manager.createTask(task5);
+//        manager.createTask(task6);
+//        manager.createTask(task7);
+//        manager.createTask(task8);
+//        manager.createTask(task9);
+//        manager.createTask(task10);
+//
+//        System.out.println("Здесь должен печатаь все задачи");
+//        manager.printAllTask();
+//
+//        System.out.println("Здесь должен вызвать таск по ID");
+//        manager.printTaskById(task1.getId());
+//        manager.printTaskById(task4.getId());
+//        manager.printTaskById(task6.getId());
+//        manager.printTaskById(task2.getId());
+//        manager.printTaskById(task6.getId());
+//        manager.printTaskById(task5.getId());
+//        manager.printTaskById(task7.getId());
+//        manager.printTaskById(task8.getId());
+//        manager.printTaskById(task9.getId());
+//        manager.printTaskById(task10.getId());
+//        manager.printTaskById(task2.getId());
 
-        System.out.println("🟢 Все тесты успешно пройдены! 🎉");
+
+//        System.out.println("Здесь должен записать как историю");
+//        manager.getHistory();
+        manager.printAllEpic();
+
     }
 }
