@@ -6,64 +6,57 @@ import util.ManagerUtil;
 
 
 public class Main {
-    public static void main(String[] args) {
-        TaskManager manager = ManagerUtil.getDefault();
+        public static void main(String[] args) {
+            TaskManager taskManager = ManagerUtil.getDefault();
 
-        Epic epic1 = new Epic("Test", "test");
-        manager.createEpic(epic1);
+            // 1️⃣ Добавление задач
+            Task task1 = new Task("Task 1", "Description 1");
+            Task task2 = new Task("Task 2", "Description 2");
 
-        Subtask subtask1 = new Subtask("sfsd","sdfsfd",epic1.getId());
-        Subtask subtask2 = new Subtask("2","2",epic1.getId());
+            taskManager.createTask(task1);
+            taskManager.createTask(task2);
 
-        manager.createSubtask(epic1.getId(), subtask1);
-        manager.createSubtask(epic1.getId(), subtask2);
+            System.out.println("Все задачи после добавления:");
+            taskManager.printAllTask();  // ✅ Должны отобразиться две задачи
 
-//        epic1.addSubtaskIdsList(epic1.getId());
+            // 2️⃣ Получение задачи по ID
+            int task1Id = task1.getId();
+            System.out.println("\nПолученная задача по ID " + task1Id + ":");
+            taskManager.printTaskById(task1Id); // ✅ Должна быть найдена
 
+            // 3️⃣ Удаление задачи
+            taskManager.removeTaskById(task1Id);
+            System.out.println("\nВсе задачи после удаления первой:");
+            taskManager.printAllTask();  // ✅ Должна остаться только task2
 
-//        Task task1 = new Task("Задача1", "Description1");
-//        Task task2 = new Task("Задача2", "Description2");
-//        Task task3 = new Task("Задача3", "Description3");
-//        Task task4 = new Task("Задача4", "Description4");
-//        Task task5 = new Task("Задача5", "Description5");
-//        Task task6 = new Task("Задача6", "Description6");
-//        Task task7 = new Task("Задача7", "Description7");
-//        Task task8 = new Task("Задача8", "Description8");
-//        Task task9 = new Task("Задача9", "Description9");
-//        Task task10 = new Task("Задача10", "Description10");
+            // 4️⃣ Добавление эпика и подзадачи
+            Epic epic = new Epic("Epic 1", "Big Task");
+            taskManager.createEpic(epic);
 
+            Subtask subtask1 = new Subtask("Subtask 1", "Part of Epic", epic.getId());
+            Subtask subtask2 = new Subtask("Subtask 2", "Part of Epic", epic.getId());
 
-//        manager.createTask(task1);
-//        manager.createTask(task2);
-//        manager.createTask(task3);
-//        manager.createTask(task4);
-//        manager.createTask(task5);
-//        manager.createTask(task6);
-//        manager.createTask(task7);
-//        manager.createTask(task8);
-//        manager.createTask(task9);
-//        manager.createTask(task10);
-//
-//        System.out.println("Здесь должен печатаь все задачи");
-//        manager.printAllTask();
-//
-//        System.out.println("Здесь должен вызвать таск по ID");
-//        manager.printTaskById(task1.getId());
-//        manager.printTaskById(task4.getId());
-//        manager.printTaskById(task6.getId());
-//        manager.printTaskById(task2.getId());
-//        manager.printTaskById(task6.getId());
-//        manager.printTaskById(task5.getId());
-//        manager.printTaskById(task7.getId());
-//        manager.printTaskById(task8.getId());
-//        manager.printTaskById(task9.getId());
-//        manager.printTaskById(task10.getId());
-//        manager.printTaskById(task2.getId());
+            taskManager.createSubtask(epic.getId(), subtask1);
+            taskManager.createSubtask(epic.getId(), subtask2);
+
+            System.out.println("\nЭпик с подзадачами:");
+            taskManager.printEpicWithSub(epic);  // ✅ Должен вывести эпик и две подзадачи
+
+            // 5️⃣ Обновление статусов
+            System.out.println("\nОбновление статуса подзадачи...");
+            taskManager.updateSubtaskStatus(subtask1.getId(), TaskStatus.DONE);
+            taskManager.printEpicWithSub(epic); // ✅ Эпик должен измениться в статусе
 
 
-//        System.out.println("Здесь должен записать как историю");
-//        manager.getHistory();
-        manager.printAllEpic();
+            // 7️⃣ Очистка данных
+            taskManager.removeAllTask();
+            taskManager.removeAllEpic();
+            taskManager.removeAllSubtasks();
+
+            System.out.println("\nДанные после очистки:");
+            taskManager.printAllTask();  // ✅ Должно быть пусто
+            taskManager.printAllEpic();
+            taskManager.printAllSubtask();
 
     }
 }

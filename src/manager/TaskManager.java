@@ -10,6 +10,10 @@ import java.util.Map;
 
 public interface TaskManager {
     //Работа чисто по Task-у
+    Task getTask(int id);
+
+    Task addTask(Task task, int id);
+
     void createTask(Task task);
 
     Map<Integer, Task> printAllTask();

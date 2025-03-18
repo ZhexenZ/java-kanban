@@ -23,6 +23,21 @@ public class InMemoryTaskManager implements TaskManager {
 
     //Работа чисто по Task-у
     @Override
+    public Task getTask(int id) {
+        Task task = taskMap.get(id);
+        System.out.println(task);
+
+        return task;
+    }
+
+    @Override
+    public Task addTask(Task task, int id) {
+        task.setId(id);
+        taskMap.put(task.getId(), task);
+        return task;
+    }
+
+    @Override
     public void createTask(Task task) {
         task.setId(nextId++);
         taskMap.put(task.getId(), task);
@@ -104,7 +119,7 @@ public class InMemoryTaskManager implements TaskManager {
         } else {
             subtask.setId(nextId++);
             subtaskMap.put(subtask.getId(), subtask);
-            epicMap.get(epicId).addSubtaskIdsList(subtask.getId());
+            epicMap.get(epicId).addSubtaskIdsList(subtask.getId(), epicId);
             updateEpicStatus(epicId);
             String message = String.format("Эпик ID: %d\nДобавлена подзадача ID: %d - %s",
                     epicId, subtask.getId(), subtask.getName());
@@ -177,10 +192,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void getHistory() {
+        historyManager.printHistoryId();
         historyManager.printHistory();
     }
-
-
-
-
 }

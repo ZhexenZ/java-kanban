@@ -16,11 +16,18 @@ public class InMemoryHistoryManager implements HistoryManager {
     }
 
     @Override
-    public void printHistory() {
+    public void printHistoryId() {
         for (Task task : getHistory) {
             System.out.println(task.getId() + " ");
         }
         System.out.println("В истории: " + getHistory.size() + " ID");
+    }
+
+    @Override
+    public void printHistory() {
+        for (Task task : getHistory) {
+            System.out.println(task);
+        }
     }
 
 

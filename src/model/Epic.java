@@ -6,6 +6,7 @@ import java.util.List;
 public class Epic extends Task {
     private List<Integer> subtaskIdsList = new ArrayList<>();
 
+
     public Epic(String name, String description) {
         super(name, description);
     }
@@ -14,9 +15,12 @@ public class Epic extends Task {
         return subtaskIdsList;
     }
 
-    public void addSubtaskIdsList(int subtaskId) {
-        subtaskIdsList.add(subtaskId);
-
+    public void addSubtaskIdsList(int subtaskId, int epicId) {
+        if (subtaskId != epicId) {
+            subtaskIdsList.add(subtaskId);
+        } else {
+            System.out.println("Епик не может быть в списке подзадач");
+        }
     }
 
     public void removeSubtask(int subtaskId) {
