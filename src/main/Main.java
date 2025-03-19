@@ -21,7 +21,7 @@ public class Main {
 
             // 2️⃣ Получение задачи по ID
             int task1Id = task1.getId();
-            System.out.println("\nПолученная задача по ID " + task1Id + ":");
+            System.out.println(String.format("\nПолученная задача по ID %d:", task1Id));
             taskManager.printTaskById(task1Id); // ✅ Должна быть найдена
 
             // 3️⃣ Удаление задачи
