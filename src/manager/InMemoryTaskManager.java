@@ -130,7 +130,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public void printEpicWithSub(Epic epic) {
         System.out.println(epic);
-        for (int i : epic.getSubtaskIdsList()){
+        for (int i : epic.getSubtaskIdsList()) {
             System.out.println(subtaskMap.get(i));
         }
     }
