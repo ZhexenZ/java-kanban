@@ -6,7 +6,7 @@ public class Subtask extends Task {
 
     public Subtask(String name, String description, int epicId) {
         super(name, description);
-        if (epicId == this.getId()) {}
+        if (epicId == this.getId()) {getId();}
     }
 
     public void setEpicId(int epicId) {
