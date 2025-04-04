@@ -1,8 +1,6 @@
 package manager;
 import model.*;
 import util.ManagerUtil;
-
-
 import java.util.HashMap;
 import java.util.Map;
 
