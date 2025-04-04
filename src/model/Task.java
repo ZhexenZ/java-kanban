@@ -22,7 +22,9 @@ public class Task {
         return description;
     }
 
-    public void  setDescription(String description) {this.description = description;}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public int getId() {
         return id;
@@ -36,15 +38,21 @@ public class Task {
         this.status = status;
     }
 
-    public void setId(int id) {this.id = id;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
         Task task = (Task) o;
-        return id == task.id && Objects.equals(name, task.name) &&
-                Objects.equals(description, task.description) &&
-                status == task.status;
+        return id == task.id
+                && Objects.equals(name, task.name)
+                && Objects.equals(description, task.description)
+                && status == task.status;
     }
 
     @Override
@@ -54,12 +62,11 @@ public class Task {
 
     @Override
     public String toString() {
-        return " Задача{" +
+        return "Задача{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status=" + status +
                 '}';
     }
-
 }
