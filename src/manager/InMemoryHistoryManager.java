@@ -1,4 +1,5 @@
 package manager;
+
 import model.Task;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,10 +27,8 @@ public class InMemoryHistoryManager implements HistoryManager {
     public void addHistory(Task task) {
         if (task == null) return;
 
-        // удаляем старую копию, если была
         remove(task.getId());
 
-        // создаём новый узел и добавляем в конец
         Node newNode = new Node(tail, task, null);
 
         if (tail != null) {
@@ -42,13 +41,6 @@ public class InMemoryHistoryManager implements HistoryManager {
         nodeMap.put(task.getId(), newNode);
     }
 
-   // @Override
-//    public void printHistoryId() {
-//     for (Integer i : nodeMap.keySet()) {
-//         System.out.println(i);
-//     }
-//        System.out.println("В истории: " + nodeMap.size() + " ID");
-//    }
 
     @Override
     public List<Task> getHistory() {
@@ -79,6 +71,4 @@ public class InMemoryHistoryManager implements HistoryManager {
             tail = node.prev;
         }
     }
-
-
 }
