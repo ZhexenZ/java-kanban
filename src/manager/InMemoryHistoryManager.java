@@ -71,5 +71,4 @@ public class InMemoryHistoryManager implements HistoryManager {
             tail = node.prev;
         }
     }
-    
 }
