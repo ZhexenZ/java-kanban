@@ -67,6 +67,5 @@ public class Main {
         taskManager.printAllTask();  // ✅ Должно быть пусто
         taskManager.printAllEpic();
         taskManager.printAllSubtask();
-
     }
 }
