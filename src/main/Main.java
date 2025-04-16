@@ -67,26 +67,5 @@ public class Main {
         taskManager.printAllTask();  // ✅ Должно быть пусто
         taskManager.printAllEpic();
         taskManager.printAllSubtask();
-
-
-            Task task3 = new Task("task3","task3");
-            Task task4 = new Task("task4","task4");
-            Task task5 = new Task("task5","task5");
-            Task task6 = new Task("task6","task6");
-
-            taskManager.createTask(task3);
-            taskManager.createTask(task4);
-            taskManager.createTask(task5);
-            taskManager.createTask(task6);
-
-            taskManager.printTaskById(task5.getId());
-            taskManager.printTaskById(task2.getId());
-            taskManager.printTaskById(task5.getId());
-            taskManager.printTaskById(task4.getId());
-
-
-            System.out.println("---------------------");
-            taskManager.getHistory();
-
     }
 }
