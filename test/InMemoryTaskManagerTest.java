@@ -5,7 +5,6 @@ import model.Subtask;
 import model.Task;
 import org.junit.jupiter.api.Test;
 import util.ManagerUtil;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InMemoryTaskManagerTest {
@@ -121,5 +120,6 @@ public class InMemoryTaskManagerTest {
             assertEquals(originalTask.getStatus(), storedTask.getStatus(), "Статус задачи должен оставаться неизменным");
 
         }
+
 
 }
