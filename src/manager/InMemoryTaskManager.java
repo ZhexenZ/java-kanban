@@ -1,4 +1,5 @@
 package manager;
+
 import model.*;
 import util.ManagerUtil;
 
@@ -48,7 +49,7 @@ public class InMemoryTaskManager implements TaskManager {
         for (Task task : taskMap.values()) {
             System.out.println(task);
         }
-        return  taskMap;
+        return taskMap;
     }
 
     @Override
@@ -132,7 +133,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public void printEpicWithSub(Epic epic) {
         System.out.println(epic);
-        for (int i : epic.getSubtaskIdsList()){
+        for (int i : epic.getSubtaskIdsList()) {
             System.out.println(subtaskMap.get(i));
         }
     }

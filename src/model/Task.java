@@ -24,7 +24,9 @@ public class Task {
         return description;
     }
 
-    public void  setDescription(String description) {this.description = description;}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public int getId() {
         return id;
@@ -38,9 +40,13 @@ public class Task {
         this.status = status;
     }
 
-    public void setId(int id) {this.id = id;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public TaskType getType() {return type;}
+    public TaskType getType() {
+        return type;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -8,14 +8,13 @@ import java.util.Map;
 import model.*;
 
 
-public class FileBackedTaskManager extends InMemoryTaskManager implements TaskManager{
+public class FileBackedTaskManager extends InMemoryTaskManager implements TaskManager {
     protected final File file;
     Map<Integer, Task> tasks = new HashMap<>();
 
     public FileBackedTaskManager(File file) {
         this.file = file;
     }
-
 
 
     @Override
@@ -28,7 +27,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
     @Override
     public void createEpic(Epic epic) {
         super.createEpic(epic);
-        tasks.put(epic.getId(),epic);
+        tasks.put(epic.getId(), epic);
         save();
     }
 
@@ -67,7 +66,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
         return sb.toString();
     }
 
-    public static  Task fromString(String value) {
+    public static Task fromString(String value) {
         String[] fields = value.split(",");
         int id = Integer.parseInt(fields[0]);
         TaskType type = TaskType.valueOf(fields[1]);
@@ -97,15 +96,15 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
     }
 
     private void loadFromFile() {
-       try( BufferedReader reader = new BufferedReader(
+        try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
             String line = reader.readLine();
             while ((line = reader.readLine()) != null) {
                 Task task = fromString(line);
                 tasks.put(task.getId(), task);
             }
-        } catch(IOException e) {
-           e.printStackTrace();
-       }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
