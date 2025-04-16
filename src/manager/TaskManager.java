@@ -5,7 +5,7 @@ import model.Subtask;
 import model.Task;
 import model.TaskStatus;
 
-import java.util.List;
+
 import java.util.Map;
 
 public interface TaskManager {

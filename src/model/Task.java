@@ -6,12 +6,14 @@ public class Task {
     private String name;
     private String description;
     private TaskStatus status;
+    protected TaskType type;
     private int id;
 
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
         this.status = TaskStatus.NEW;
+        this.type = TaskType.TASK;
     }
 
     public String getName() {
@@ -37,6 +39,8 @@ public class Task {
     }
 
     public void setId(int id) {this.id = id;}
+
+    public TaskType getType() {return type;}
 
     @Override
     public boolean equals(Object o) {
