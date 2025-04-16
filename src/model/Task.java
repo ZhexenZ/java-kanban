@@ -17,14 +17,17 @@ public class Task {
     }
 
     public String getName() {
+
         return name;
     }
 
     public String getDescription() {
+
         return description;
     }
 
     public void setDescription(String description) {
+
         this.description = description;
     }
 
@@ -37,14 +40,17 @@ public class Task {
     }
 
     public void setStatus(TaskStatus status) {
+
         this.status = status;
     }
 
     public void setId(int id) {
+
         this.id = id;
     }
 
     public TaskType getType() {
+
         return type;
     }
 
