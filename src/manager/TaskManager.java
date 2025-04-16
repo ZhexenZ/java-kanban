@@ -48,5 +48,4 @@ public interface TaskManager {
     void removeAllSubtasks();
 
     void getHistory();
-
 }
