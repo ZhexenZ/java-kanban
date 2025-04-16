@@ -4,12 +4,10 @@ import model.Epic;
 import model.Subtask;
 import model.Task;
 import model.TaskStatus;
-
-
 import java.util.Map;
 
 public interface TaskManager {
-    //Работа чисто по Task-у
+    //Работа по Task-у
     Task getTask(int id);
 
     Task addTask(Task task, int id);
@@ -26,7 +24,7 @@ public interface TaskManager {
 
     void updateStatusTask(int id, TaskStatus status);
 
-    //Работа чисто по Epic-у
+    //Работа  по Epic-у
     void createEpic(Epic epic);
 
     Map<Integer, Epic> printAllEpic();
@@ -37,7 +35,7 @@ public interface TaskManager {
 
     void removeEpicById(int id);
 
-    //Работа чисто по subtask-у
+    //Работа по subtask-у
     void createSubtask(int epicId, Subtask subtask);
 
     void printEpicWithSub(Epic epic);

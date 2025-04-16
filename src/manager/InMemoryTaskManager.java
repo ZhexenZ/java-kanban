@@ -1,8 +1,7 @@
 package manager;
+
 import model.*;
 import util.ManagerUtil;
-
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +20,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
 
-    //Работа чисто по Task-у
+    //Работа по Task-у
     @Override
     public Task getTask(int id) {
         Task task = taskMap.get(id);
@@ -73,7 +72,7 @@ public class InMemoryTaskManager implements TaskManager {
         taskMap.get(id).setStatus(status);
     }
 
-    //Работа чисто по Epic-у
+    //Работа по Epic-у
     @Override
     public void createEpic(Epic epic) {
         epic.setId(nextId++);
@@ -111,7 +110,7 @@ public class InMemoryTaskManager implements TaskManager {
         epicMap.remove(id);
     }
 
-    //Работа чисто по subtask-у
+    //Работа по subtask-у
     @Override
     public void createSubtask(int epicId, Subtask subtask) {
         if (!epicMap.containsKey(epicId)) {
@@ -132,7 +131,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public void printEpicWithSub(Epic epic) {
         System.out.println(epic);
-        for (int i : epic.getSubtaskIdsList()){
+        for (int i : epic.getSubtaskIdsList()) {
             System.out.println(subtaskMap.get(i));
         }
     }
@@ -192,7 +191,6 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void getHistory() {
-        historyManager.printHistoryId();
-        historyManager.printHistory();
+        historyManager.getHistory();
     }
 }
