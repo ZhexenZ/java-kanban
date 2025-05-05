@@ -2,6 +2,8 @@ package manager;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,33 +68,38 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
         return sb.toString();
     }
 
-    public static Task fromString(String value) {
-        String[] fields = value.split(",");
+    public Task fromString(String value) {
+        String[] fields = value.split(",", -1);
         int id = Integer.parseInt(fields[0]);
         TaskType type = TaskType.valueOf(fields[1]);
         String name = fields[2];
         TaskStatus status = TaskStatus.valueOf(fields[3]);
         String description = fields[4];
+        LocalDateTime startTime = !"null".equals(fields[5]) ? LocalDateTime.parse(fields[5]) : null;
+        Duration duration = !"null".equals(fields[6]) ? Duration.parse(fields[6]) : Duration.ZERO;
+
+        Task task;
         switch (type) {
             case TASK:
-                Task task = new Task(name, description);
-                task.setId(id);
-                task.setStatus(status);
-                return task;
+                task = new Task(name, description);
+                break;
             case EPIC:
-                Epic epic = new Epic(name, description);
-                epic.setId(id);
-                epic.setStatus(status);
-                return epic;
+                task = new Epic(name, description);
+                break;
             case SUBTASK:
-                int epicId = Integer.parseInt(fields[5]);
-                Subtask subtask = new Subtask(name, description, epicId);
-                subtask.setId(id);
-                subtask.setStatus(status);
-                return subtask;
+                int epicId = Integer.parseInt(fields[7]);
+                task = new Subtask(name, description, epicId);
+                break;
             default:
-                throw new IllegalArgumentException("Неизвестный тип задачи: " + type);
+                throw new IllegalStateException("Неизвестный тип задачи: " + type);
         }
+
+        task.setId(id);
+        task.setStatus(status);
+        task.setStartDateTime(startTime);
+        task.setDuration(duration);
+
+        return task;
     }
 
     private void loadFromFile() {

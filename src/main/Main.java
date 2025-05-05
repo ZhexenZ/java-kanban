@@ -6,6 +6,8 @@ import model.*;
 import util.ManagerUtil;
 
 import java.io.File;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 
 public class Main {
@@ -57,15 +59,24 @@ public class Main {
         taskManager.updateSubtaskStatus(subtask1.getId(), TaskStatus.DONE);
         taskManager.printEpicWithSub(epic); // ✅ Эпик должен измениться в статусе
 
+        Task t1 = new Task("Встреча", "С командой");
+        t1.setStartDateTime(LocalDateTime.of(2025, 4, 28, 14, 0));
+        t1.setDuration(Duration.ofMinutes(60));
+        manager.addTask(t1, 0);
+
 
         // 7️⃣ Очистка данных
         taskManager.removeAllTask();
         taskManager.removeAllEpic();
         taskManager.removeAllSubtasks();
 
+
+
+
         System.out.println("\nДанные после очистки:");
         taskManager.printAllTask();  // ✅ Должно быть пусто
         taskManager.printAllEpic();
         taskManager.printAllSubtask();
+
     }
 }

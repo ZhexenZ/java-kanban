@@ -22,7 +22,6 @@ public class Subtask extends Task {
     }
 
 
-
     public static String toString(Subtask subtask) {
         return subtask.getId() +
                 "," + subtask.getType() +
@@ -32,6 +31,9 @@ public class Subtask extends Task {
                 "," + subtask.getEpicId();
 
     }
+
+    @Override
+    public String toCsvString() {
+        return super.toCsvString() + "," + getEpicId();
+    }
 }
-
-
