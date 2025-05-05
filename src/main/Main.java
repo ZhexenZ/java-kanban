@@ -71,5 +71,12 @@ public class Main {
         taskManager.removeAllSubtasks();
 
 
+
+
+        System.out.println("\nДанные после очистки:");
+        taskManager.printAllTask();  // ✅ Должно быть пусто
+        taskManager.printAllEpic();
+        taskManager.printAllSubtask();
+
     }
 }
