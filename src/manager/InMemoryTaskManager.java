@@ -36,9 +36,8 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Task addTask(Task task, int id) {
         validateNoOverlap(task);
-        int ids = generateId();
-        task.setId(ids);
-        taskMap.put(ids, task);
+        task.setId(id);
+        taskMap.put(id, task);
         if (task.getStartDateTime() != null) {
             prioritizedTasks.add(task);
         }
@@ -230,10 +229,6 @@ public class InMemoryTaskManager implements TaskManager {
                     epic.getSubtaskIdsList().clear();
                     epic.setStatus(TaskStatus.NEW);
                 });
-    }
-
-    private int generateId() {
-        return nextId++;
     }
 
     @Override
